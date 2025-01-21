@@ -282,7 +282,7 @@
             <div class="row">
               <div class="col-md-3">
                 <h3 class="title-small">
-                  <span>İş detaylarım</span>
+                  <span>Hizmetlerim</span>
                 </h3>
                 <p class="content-detail">
                   Yazılım geliştirme alanında geniş bir yelpazede deneyime sahibim. Java, C#, PHP, HTML, CSS, JavaScript gibi dillerde projeler geliştiriyor, Spring Boot, React ve .NET Framework'leriyle modern çözümler sunuyorum. Ayrıca, MySQL ve MSSQL veritabanlarıyla güvenli ve verimli veri yönetimi sağlıyorum. Hedefim, müşteri odaklı, yüksek kaliteli ve ölçeklenebilir uygulamalar oluşturmaktır.
@@ -641,7 +641,8 @@
                   <span>Eğitim</span>
                 </h3>
                 <p class="content-detail">
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                Nişantaşı Üniversitesi : Yazılım 2. Sınıf Öğrencisi Uzmanlaşmaya çalıştığım dil : Java, Spring Boot & React Full Stack 
+                
                 </p>
               </div>
               <div class="col-md-9 content-right">
@@ -872,12 +873,11 @@
                       </p>
                       <a href="#">
                         <h3 class="title">
-                          BİTİŞ
+                        İlgi Alanımın Değişmesi
                         </h3>
                       </a>
                       <p class="content-blog">
-                        
-Daha sonrasında Java ile Android Studio kullanımına başladım, orada kendimi geliştirdim ve oradan da sıkıldım :) :) Sonrasında ise HTML ve CSS bilgimi Java ile geliştirmeye karar verdim. Evet, işte Spring framework'ü ve React'ın doğuşu başladı... Şans dileyin bana, React ve Spring için o şansa çok ihtiyacım olacak! :))
+                      Tamam, bu kadar web sitesi kuruyordum, ediyordum fakat ilgim sadece web sitesi yapmakla kalmıyordu; oyun yapmak istiyordum. Herkes gibi ben de oyun oynamayı çok seven birisiydim ve Java ile tanışmam işte o gün başladı.. 
                       </p>
                     </div>
                   </div>
@@ -886,15 +886,15 @@ Daha sonrasında Java ile Android Studio kullanımına başladım, orada kendimi
                     <div class="wrap-article">
                       <img alt="blog5" class="img-circle text-center" src="images/blog-5.jpg">
                       <p class="subtitle fancy">
-                        <span>01/03/2021</span>
+                        <span>23/01/2025</span>
                       </p>
                       <a href="#">
                         <h3 class="title">
-                          İlgi Alanımın Değişmesi
+                          BİTİŞ
                         </h3>
                       </a>
                       <p class="content-blog">
-                        Tamam, bu kadar web sitesi kuruyordum, ediyordum fakat ilgim sadece web sitesi yapmakla kalmıyordu; oyun yapmak istiyordum. Herkes gibi ben de oyun oynamayı çok seven birisiydim ve Java ile tanışmam işte o gün başladı.. 
+                      Daha sonrasında Java ile Android Studio kullanımına başladım, orada kendimi geliştirdim ve oradan da sıkıldım :) :) Sonrasında ise HTML ve CSS bilgimi Java ile geliştirmeye karar verdim. Evet, işte Spring framework'ü ve React'ın doğuşu başladı... Şans dileyin bana, React ve Spring için o şansa çok ihtiyacım olacak! :))
                       </p>
                     </div>
                   </div>
@@ -903,7 +903,7 @@ Daha sonrasında Java ile Android Studio kullanımına başladım, orada kendimi
                     <div class="wrap-article">
                       <img alt="blog-3" class="img-circle text-center" src="images/java.jpg">
                       <p class="subtitle fancy">
-                        <span>23/04/2025</span>
+                        <span>13/07/2021</span>
                       </p>
                       <a href="#">
                         <h3 class="title">
