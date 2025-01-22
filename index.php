@@ -1,8 +1,17 @@
+<?php
+// En başa veritabanı bağlantısını ekleyin
+include("baglanti.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <title>Kişisel Web Sayfam</title>
+    <!-- Mobil uyumluluk için meta etiketleri -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta content="Bodo - Simple One Page Personal" name="description">
@@ -25,6 +34,147 @@
     <!--[if lt IE 9]>
        <script type="text/javascript" src="js/html5shiv.min.js"></script>
     <![endif]-->
+    
+    <script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="js/jquery.appear.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="js/classie.js" type="text/javascript"></script>
+    <script src="js/owl.carousel.min.js" type="text/javascript"></script>
+    <script src="js/jquery.magnific-popup.min.js" type="text/javascript"></script>
+    <script src="js/masonry.pkgd.min.js" type="text/javascript"></script>
+    <script src="js/masonry.js" type="text/javascript"></script>
+    <script src="js/smooth-scroll.min.js" type="text/javascript"></script>
+    <script src="js/typed.js" type="text/javascript"></script>
+    <script src="js/main.js" type="text/javascript"></script>
+    <style>
+    #preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #fff;
+        z-index: 9999;
+    }
+
+    #status {
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #status img {
+        max-width: 100%;
+    }
+
+    .loaded #preloader {
+        display: none;
+    }
+
+    /* Mobil cihazlar için genel ayarlar */
+    @media (max-width: 768px) {
+      .content-wrap {
+        padding: 0 15px;
+      }
+      
+      /* Menü düzenlemeleri */
+      .menu-wrap {
+        width: 100%;
+        max-width: 300px;
+      }
+      
+      /* Header düzenlemeleri */
+      .header {
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+      }
+      
+      /* Hizmetler bölümü */
+      .listing-item li {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+      
+      /* Beceriler bölümü */
+      .skillbar {
+        margin-bottom: 15px;
+      }
+      
+      /* İletişim formu */
+      .group input, .group textarea {
+        width: 100%;
+      }
+      
+      /* Footer */
+      .socials li {
+        margin: 5px;
+      }
+      
+      /* Genel yazı boyutları */
+      h1 { font-size: 2em; }
+      h2 { font-size: 1.8em; }
+      h3 { font-size: 1.5em; }
+      p { font-size: 1em; }
+      
+      /* Responsive tablo */
+      .table-responsive {
+        overflow-x: auto;
+      }
+      
+      /* Grid düzenlemeleri */
+      .col-md-3, .col-md-4, .col-md-6, .col-md-9 {
+        width: 100%;
+        padding: 0 15px;
+      }
+      
+      /* Resim boyutları */
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      
+      /* Preloader */
+      #status {
+        width: 150px;
+        height: 150px;
+      }
+    }
+    
+    /* Tablet cihazlar için ayarlar */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .listing-item li {
+        width: 50%;
+      }
+      
+      .col-md-3 {
+        width: 50%;
+      }
+      
+      .col-md-9 {
+        width: 100%;
+      }
+    }
+    
+    /* Dokunmatik cihazlar için hover efektleri */
+    @media (hover: none) {
+      .nav-link:hover,
+      .btn:hover,
+      .socials a:hover {
+        transform: none;
+      }
+    }
+    
+    /* Yüksek DPI ekranlar için */
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      img {
+        image-rendering: -webkit-optimize-contrast;
+      }
+    }
+    </style>
   </head>
   <body>
     <!--PRELOADER-->
@@ -125,9 +275,19 @@
                   <div class="wrap-about">
                     <div class="w-content">
                       <p class="head-about">
-                        Ben Batuhan Yalçın, Java, Spring Boot ve React ile Full Stack geliştirme yolunda ilerleyen bir yazılım geliştiricisiyim. Yazılıma olan ilgim 2020 yılında başladı ve o günden beri kendimi sürekli olarak geliştiriyorum. Güncel yazılım dillerini öğrenerek, her zaman bir adım önde olmayı hedefliyorum. Bu alanda büyük bir şevk ve tutku ile çalışıyor, yazılım dünyasında başarılı olmayı amaçlıyorum.
+                        <?php
+                        // Hakkımda içeriğini çek
+                        $sorgu = "SELECT icerik FROM site_icerik WHERE alan = 'hakkimda'";
+                        $sonuc = $baglan->query($sorgu);
+                        
+                        if ($sonuc && $sonuc->num_rows > 0) {
+                            $row = $sonuc->fetch_assoc();
+                            echo $row['icerik'];
+                        } else {
+                            echo "İçerik yüklenirken bir hata oluştu.";
+                        }
+                        ?>
                       </p>
-                      
                       <h5 class="name">
                         Batuhan Yalçın
                       </h5>
@@ -285,100 +445,36 @@
                   <span>Hizmetlerim</span>
                 </h3>
                 <p class="content-detail">
-                  Yazılım geliştirme alanında geniş bir yelpazede deneyime sahibim. Java, C#, PHP, HTML, CSS, JavaScript gibi dillerde projeler geliştiriyor, Spring Boot, React ve .NET Framework'leriyle modern çözümler sunuyorum. Ayrıca, MySQL ve MSSQL veritabanlarıyla güvenli ve verimli veri yönetimi sağlıyorum. Hedefim, müşteri odaklı, yüksek kaliteli ve ölçeklenebilir uygulamalar oluşturmaktır.
+                  <?php
+                  $sorgu = "SELECT icerik FROM site_icerik WHERE alan = 'hizmetler'";
+                  $sonuc = $baglan->query($sorgu);
+                  if ($sonuc && $sonuc->num_rows > 0) {
+                      $row = $sonuc->fetch_assoc();
+                      echo $row['icerik'];
+                  }
+                  ?>
                 </p>
               </div>
               <div class="col-md-9 content-right">
                 <div class="row">
                   <ul class="listing-item">
-                    <li>
-                      <div class="col-md-4 col-sm-4">
-                        <h3 class="icon-use">
-                          c
-                        </h3>
-                        <p class="head-sm">
-                         Java Geliştirme
-                        </p>
-                        <p class="text-grey">
-                          Java Geliştirme
-                          Java ile güçlü ve ölçeklenebilir uygulamalar geliştiriyorum. Web, masaüstü ve mobil projelerde Java'nın gücünü kullanarak performansı yüksek çözümler sunuyorum.
-                        </p>
-                      </div>
-                    </li>
-
-                    <li>
-                      <div class="col-md-4 col-sm-4">
-                        <h3 class="icon-use">
-                          b
-                        </h3>
-                        <p class="head-sm">
-                          C# Geliştirme
-                        </p>
-                        <p class="text-grey">
-                          C# dilinde, .NET platformunda gelişmiş yazılımlar geliştiriyorum. Özellikle masaüstü uygulamaları ve web servisleri konusunda deneyimliyim.
-                        </p>
-                      </div>
-                    </li>
-
-                    <li>
-                      <div class="col-md-4 col-sm-4">
-                        <h3 class="icon-use">
-                          d
-                        </h3>
-                        <p class="head-sm">
-                          Spring Boot & React Framework
-                        </p>
-                        <p class="text-grey">
-                          Spring Boot ile backend geliştirme ve React ile frontend uygulamaları geliştirme konusunda tecrübem var. Modern web uygulamalarını hızlı ve etkili bir şekilde oluşturuyorum.
-                        </p>
-                      </div>
-                    </li>
+                    <?php
+                    // Hizmetleri veritabanından çek
+                    $hizmetler = $baglan->query("SELECT * FROM hizmetler ORDER BY id DESC");
+                    
+                    if($hizmetler) {
+                        while($hizmet = $hizmetler->fetch_assoc()) {
+                            echo '<li>';
+                            echo '<div class="col-md-4 col-sm-4">';
+                            echo '<h3 class="icon-use">'.$hizmet['ikon'].'</h3>';
+                            echo '<p class="head-sm">'.$hizmet['baslik'].'</p>';
+                            echo '<p class="text-grey">'.$hizmet['aciklama'].'</p>';
+                            echo '</div>';
+                            echo '</li>';
+                        }
+                    }
+                    ?>
                   </ul>
-
-                  <ul class="listing-item">
-                    <li>
-                      <div class="col-md-4 col-sm-4">
-                        <p class="icon-use">
-                          f
-                        </p>
-                        <p class="head-sm">
-                          Veritabanı Yönetimi (MySQL & MSSQL)
-                        </p>
-                        <p class="text-grey">
-                          Veritabanı tasarımı ve yönetimi konusunda MySQL ve MSSQL ile güçlü çözümler sunuyorum. Veritabanlarınızı güvenli, hızlı ve verimli bir şekilde yönetiyorum.
-                        </p>
-                      </div>
-                    </li>
-
-                    <li>
-                      <div class="col-md-4 col-sm-4">
-                        <h3 class="icon-use">
-                          p
-                        </h3>
-                        <p class="head-sm">
-                          HTML & CSS TASARIMI
-                        </p>
-                        <p class="text-grey">
-                          Web siteniz için kullanıcı dostu, modern ve responsive tasarımlar oluşturuyorum. HTML5 ve CSS3 teknolojileriyle estetik ve işlevsel arayüzler tasarlıyorum.
-                        </p>
-                      </div>
-                    </li>
-
-                    <li>
-                      <div class="col-md-4 col-sm-4">
-                        <h3 class="icon-use">
-                          m
-                        </h3>
-                        <p class="head-sm">
-                          JavaScript & PHP Programlama
-                        </p>
-                        <p class="text-grey">
-                          Dinamik ve etkileşimli web siteleri için JavaScript ve PHP dillerinde güçlü çözümler sunuyorum. Web uygulamalarınızda hızlı ve verimli işlem yapabilen kodlar yazıyorum.
-                        </p>
-                      </div>
-                    </li>
-                  </ul>
-
                 </div>
               </div>
             </div>
@@ -515,115 +611,27 @@
                   <span>Becerilerim</span>
                 </h3>
                 <p class="content-detail">
-                  Yazılım geliştirme alanında geniş bir bilgi birikimine sahibim ve özellikle Java, C#, Spring Boot ve React konularında uzmanlık kazandım. Web ve oyun geliştirme projelerinde deneyimliyim, öğrenmeye açık ve sürekli kendimi geliştiren bir yapıya sahibim.
+                  Yazılım geliştirme alanında edindiğim beceriler ve uzmanlık seviyelerim.
                 </p>
               </div>
               <div class="col-md-9 content-right">
                 <!--SKILLST-->
                 <div class="skillst">
-                  <div class="skillbar" data-percent="80%">
-                    <div class="title head-sm">
-                      JAVA
-                    </div>
-                    <div class="count-bar">
-                      <div class="count"></div>
-                    </div>
-                  </div>
-                  <div class="skillst">
-                    <div class="skillbar" data-percent="75%">
-                      <div class="title head-sm">
-                        C#
-                      </div>
-                      <div class="count-bar">
-                        <div class="count"></div>
-                      </div>
-                    </div>
-                  <div class="skillbar" data-percent="50%">
-                    <div class="title head-sm">
-                      JAVASCRİPT
-                    </div>
-                    <div class="count-bar">
-                      <div class="count"></div>
-                    </div>
-                  </div>
-                  <div class="skillst">
-                    <div class="skillbar" data-percent="60%">
-                      <div class="title head-sm">
-                        PHP
-                      </div>
-                      <div class="count-bar">
-                        <div class="count"></div>
-                      </div>
-                    </div>
-                  <div class="skillbar" data-percent="65%">
-                    <div class="title head-sm">
-                      HTML 5
-                    </div>
-                    <div class="count-bar">
-                      <div class="count"></div>
-                    </div>
-                  </div>
-                  <div class="skillbar" data-percent="60%">
-                    <div class="title head-sm">
-                      CSS 4
-                    </div>
-                    <div class="count-bar">
-                      <div class="count"></div>
-                    </div>
-                  </div>
-                  <div class="skillbar" data-percent="75%">
-                    <div class="title head-sm">
-                     MSSQL
-                    </div>
-                    <div class="count-bar">
-                      <div class="count"></div>
-                    </div>
-                  </div>
-                  <div class="skillst">
-                    <div class="skillbar" data-percent="60%">
-                      <div class="title head-sm">
-                        MySQL
-                      </div>
-                      <div class="count-bar">
-                        <div class="count"></div>
-                      </div>
-                    </div>
-                    <div class="skillst">
-                      <div class="skillbar" data-percent="30%">
-                        <div class="title head-sm">
-                          SPRİNG FRAMEWORK
-                        </div>
-                        <div class="count-bar">
-                          <div class="count"></div>
-                        </div>
-                      </div>
-                      <div class="skillst">
-                        <div class="skillbar" data-percent="25%">
-                          <div class="title head-sm">
-                            REACT FRAMEWORK 
-                          </div>
-                          <div class="count-bar">
-                            <div class="count"></div>
-                          </div>
-                        </div>
-                        <div class="skillst">
-                          <div class="skillbar" data-percent="85%">
-                            <div class="title head-sm">
-                              .NET FRAMEWORK
-                            </div>
-                            <div class="count-bar">
-                              <div class="count"></div>
-                            </div>
-                          </div>
-                          <div class="skillst">
-                            <div class="skillbar" data-percent="65%">
-                              <div class="title head-sm">
-                                ADO.NET FRAMEWORK
-                              </div>
-                              <div class="count-bar">
-                                <div class="count"></div>
-                              </div>
-                            </div>
+                  <?php
+                  // Becerileri veritabanından çek
+                  $beceriler = $baglan->query("SELECT * FROM beceriler ORDER BY id DESC");
+                  
+                  if($beceriler) {
+                      while($beceri = $beceriler->fetch_assoc()) {
+                          echo '<div class="skillbar" data-percent="'.$beceri['yuzde'].'%">';
+                          echo '<div class="title head-sm">'.$beceri['ad'].'</div>';
+                          echo '<div class="count-bar">';
+                          echo '<div class="count"></div>';
+                          echo '</div>';
+                          echo '</div>';
+                      }
+                  }
+                  ?>
                 </div>
                 <!--/.SKILLST END-->
               </div>
@@ -641,8 +649,18 @@
                   <span>Eğitim</span>
                 </h3>
                 <p class="content-detail">
-                Nişantaşı Üniversitesi : Yazılım 2. Sınıf Öğrencisi Uzmanlaşmaya çalıştığım dil : Java, Spring Boot & React Full Stack 
+                <?php
+                $egitim_sorgu = $baglan->prepare("SELECT icerik FROM site_icerik WHERE alan = ?");
+                $alan = 'egitim';
+                $egitim_sorgu->bind_param("s", $alan);
+                $egitim_sorgu->execute();
+                $result = $egitim_sorgu->get_result();
                 
+                if($egitim = $result->fetch_assoc()) {
+                    echo htmlspecialchars_decode($egitim['icerik']);
+                }
+                $egitim_sorgu->close();
+                ?>
                 </p>
               </div>
               <div class="col-md-9 content-right">
@@ -762,7 +780,7 @@
                   <div class="list-testimonial">
                     <div class="content-testimonial">
                       <h3 class="testi">
-                        “ Başarı, cesaretle atılan ilk adımla başlar. Hedefin büyükse, yolun da o kadar öğretici olur. Denemekten korkma, her hata yeni bir ders taşır. ”
+                        " Başarı, cesaretle atılan ilk adımla başlar. Hedefin büyükse, yolun da o kadar öğretici olur. Denemekten korkma, her hata yeni bir ders taşır. "
                       </h3>
                       <p class="people">
                         Batuhan Yalçın
@@ -772,7 +790,7 @@
                   <div class="list-testimonial">
                     <div class="content-testimonial">
                       <h3 class="testi">
-                        “ Hiçbir başarı kolay elde edilmez ve hiçbir büyük başarının arkasında yatıp bekleyen insanlar göremezsiniz. Başarıya ulaşmak için kararlılıkla çalışmanız, çaba göstermeniz ve asla pes etmemeniz gerekiyor.”
+                        " Hiçbir başarı kolay elde edilmez ve hiçbir büyük başarının arkasında yatıp bekleyen insanlar göremezsiniz. Başarıya ulaşmak için kararlılıkla çalışmanız, çaba göstermeniz ve asla pes etmemeniz gerekiyor. "
                       </h3>
                       <p class="people">
                        Batuhan Yalçın
@@ -782,7 +800,7 @@
                   <div class="list-testimonial">
                     <div class="content-testimonial">
                       <h3 class="testi">
-                        “ Hayatınızı tamamen bu işe adamanızı beklemiyorum, çünkü sosyal hayat da en az başarı kadar önemlidir. Ancak, bir şeyler başarmak istiyorsanız bu işe belli bir zaman ayırmanız şart. Gelecekte başarılı bir yazılımcı mı olmak istiyorsunuz yoksa asgari ücretle çalışan biri mi? Karar sizin. ”
+                        " Hayatınızı tamamen bu işe adamanızı beklemiyorum, çünkü sosyal hayat da en az başarı kadar önemlidir. Ancak, bir şeyler başarmak istiyorsanız bu işe belli bir zaman ayırmanız şart. Gelecekte başarılı bir yazılımcı mı olmak istiyorsunuz yoksa asgari ücretle çalışan biri mi? Karar sizin. "
                       </h3>
                       <p class="people">
                         Batuhan Yalçın..
@@ -957,24 +975,21 @@
 
 <?php
     
-    include("baglanti.php");
-
-    if(isset ($_POST["ad_soyad"], $_POST["email"], $_POST["mesaj"] ) )   /*   Burada Veri Var mı dedim dolu olup olmama durumu */
-    {
-        $ad_soyad=   $_POST["ad_soyad"];     /*       Form Elemanlarının İçindeki değerleri Değişkenlere Atadım Burada        */
-        $email=     $_POST["email"];
-        $mesaj=     $_POST["mesaj"];
-
-             /* MYSQL Veri Tabanından İnsert İnto ile veri ekleme */ 
-             $ekle = "INSERT INTO iletisim (ad_soyad, email, mesaj) VALUES ('".$ad_soyad."', '".$email."','".$mesaj."')";
+    if(isset($_POST["ad_soyad"], $_POST["email"], $_POST["mesaj"])) {
+        $ad_soyad = $_POST["ad_soyad"];
+        $email = $_POST["email"];
+        $mesaj = $_POST["mesaj"];
         
-      if($baglan->query($ekle)===TRUE)
-      {
-        echo "<script>alert('Mesajınız Başarı İle Gönderilmiştir.')</script>"; /*  PHP İle Yapsaydım Mesaj sitemin en altında kötü görüntü olacaktı oyüzden js ile yaptm   */
-      }
-      else{
-        echo "<script>alert('Mesaj gönderilirken hata oluştu: " . mysqli_error($baglan) . "');</script>";
-      }
+        $ekle = "INSERT INTO iletisim (ad_soyad, email, mesaj) VALUES (?, ?, ?)";
+        $stmt = $baglan->prepare($ekle);
+        $stmt->bind_param("sss", $ad_soyad, $email, $mesaj);
+        
+        if($stmt->execute()) {
+            echo "<script>alert('Mesajınız başarıyla gönderildi.');</script>";
+        } else {
+            echo "<script>alert('Mesaj gönderilirken bir hata oluştu.');</script>";
+        }
+        $stmt->close();
     }
 ?>
 
@@ -1020,16 +1035,11 @@
     </div>
     
 
-    <script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
-    <script src="js/jquery.appear.js" type="text/javascript"></script>
-    <script src="js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="js/classie.js" type="text/javascript"></script>
-    <script src="js/owl.carousel.min.js" type="text/javascript"></script>
-    <script src="js/jquery.magnific-popup.min.js" type="text/javascript"></script>
-    <script src="js/masonry.pkgd.min.js" type="text/javascript"></script>
-    <script src="js/masonry.js" type="text/javascript"></script>
-    <script src="js/smooth-scroll.min.js" type="text/javascript"></script>
-    <script src="js/typed.js" type="text/javascript"></script>
-    <script src="js/main.js" type="text/javascript"></script>
+    <script>
+    window.addEventListener('load', function() {
+        document.getElementById('status').style.display = 'none';
+        document.getElementById('preloader').style.display = 'none';
+    });
+    </script>
   </body>
 </html>

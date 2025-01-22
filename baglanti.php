@@ -6,12 +6,11 @@ $vt_sifre="";
 $vt_adi="mesajlar";
 
 
-$baglan=mysqli_connect($vt_sunucu,$vt_kullanici,$vt_sifre,$vt_adi);
+$baglan = new mysqli($vt_sunucu, $vt_kullanici, $vt_sifre, $vt_adi);
+$baglan->set_charset("utf8");
 
-
-if(!$baglan)
-{
-    die("Veri Tabanı Bağlantı İşlemi Başarısız".mysqli_connect_error()); /*    Die nin kullanım amacı burda programı veritabanı işlemi başarısız diyip durdurması için yaptım */
+if ($baglan->connect_error) {
+    die("Bağlantı hatası: " . $baglan->connect_error);
 }
 
 ?>
