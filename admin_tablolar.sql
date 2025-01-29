@@ -13,7 +13,7 @@ CREATE TABLE adminler (
 );
 
 -- Admin kullanıcısı ekleme
-INSERT INTO adminler (kullanici_adi, sifre) VALUES ('batubey', '190758');
+INSERT INTO adminler (kullanici_adi, sifre) VALUES ('batu', '123');
 
 -- Site içerik tablosu
 CREATE TABLE site_icerik (
